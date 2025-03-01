@@ -12,30 +12,54 @@
 
 #include "../includes/fractol.h"
 
-void	calculate_mandelbrot(t_data *fractal)
+void	*draw_mandelbrot(void *fractal_void)
 {
-	int		i;
-	double	x_temp;
+	t_data	*fractal;
+	int		iterations;
+	int		color;
 
-	fractal->name = "mandel";
-	i = 0;
-	fractal->zx = 0.0;
-	fractal->zy = 0.0;
-	fractal->cx = (fractal->x / fractal->zoom) + fractal->offset_x;
-	fractal->cy = (fractal->y / fractal->zoom) + fractal->offset_y;
-	while (++i < fractal->max_iterations)
+	fractal = (t_data *)fractal_void;
+	fractal->x = 0;
+	fractal->y = 0;
+	iterations = 0;
+	while (fractal->x < WIDTH)
 	{
-		x_temp = fractal->zx * fractal->zx
-			- fractal->zy * fractal->zy + fractal->cx;
-		fractal->zy = 2. * fractal->zx * fractal->zy + fractal->cy;
-		fractal->zx = x_temp;
-		if (fractal->zx * fractal->zx + fractal->zy * fractal->zy
-			>= __DBL_MAX__)
-			break ;
+		while (fractal->y < HEIGHT)
+		{
+			iterations = calculate_mandelbrot(fractal);
+			fractal->iterations[fractal->y * WIDTH + fractal->x] = iterations;
+			color = apply_gradient(iterations, fractal);
+			put_color_to_pixel(fractal, fractal->x, fractal->y, color);
+			fractal->y++;
+		}
+		fractal->x++;
+		fractal->y = 0;
 	}
-	if (i == fractal->max_iterations)
-		put_color_to_pixel(fractal, fractal->x, fractal->y, 0x000000);
-	else
-		put_color_to_pixel(fractal, fractal->x, fractal->y,
-			(fractal->color * i));
+	return (NULL);
+}
+
+void	*draw_julia(void *fractal_void)
+{
+	t_data	*fractal;
+	int		iterations;
+	int		color;
+
+	fractal = (t_data *)fractal_void;
+	fractal->x = 0;
+	fractal->y = 0;
+	iterations = 0;
+	while (fractal->x < WIDTH)
+	{
+		while (fractal->y < HEIGHT)
+		{
+			iterations = calculate_julia(fractal);
+			fractal->iterations[fractal->y * WIDTH + fractal->x] = iterations;
+			color = apply_gradient(iterations, fractal);
+			put_color_to_pixel(fractal, fractal->x, fractal->y, color);
+			fractal->y++;
+		}
+		fractal->x++;
+		fractal->y = 0;
+	}
+	return (NULL);
 }

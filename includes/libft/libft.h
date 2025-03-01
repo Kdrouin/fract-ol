@@ -16,8 +16,9 @@
 # include <unistd.h>
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		ft_atoi(const char *str);
+double	ft_atod(const char *str);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_strlen(char *str);
+int		isdigit(int c);
 
 #endif

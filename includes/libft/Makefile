@@ -5,13 +5,13 @@ RESET = \033[0m
 NAME		=	libft.a
 CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra
-OBJ 		=	$(SRC:.c=.o)
+OBJ 		=	ft_atod.o ft_strncmp.o ft_putendl_fd.o
 HEADERS	=	libft.h
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ar rcs $(NAME) $(OBJ)
+	@ar -r $(NAME) $(OBJ)
 	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
 
 %.o: %.c $(HEADERS)

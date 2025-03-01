@@ -2,7 +2,7 @@ GREEN = \033[0;32m
 RED = \033[0;31m
 RESET = \033[0m
 
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 LIBFT_PATH = includes/libft
 MLX_PATH = includes/minilibx
@@ -14,13 +14,13 @@ INCLUDE_DIR = includes
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
-LIBFT = $(LIBFT_PATH)
-MLX = $(MLX_PATH)
+LIBFT = $(LIBFT_PATH)/libft.a
+MLX = $(MLX_PATH)/libmlx.a
 
 NAME = fractol
 
 all: $(NAME)
- 
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -L$(LIBFT_PATH) -L$(MLX_PATH) -c -o $@ $<
@@ -35,7 +35,7 @@ $(MLX):
 	@echo "$(NAME): $(GREEN)$(MLX) was created$(RESET)"
 
 $(NAME): $(OBJ_FILES) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_PATH) -L$(MLX_PATH)
+	@$(CC) $(CFLAGS) -o $@ $^ -lbsd -lmlx -lXext -lX11 -lm 
 	@echo "$(NAME): $(GREEN)object files were created$(RESET)"
 	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
 

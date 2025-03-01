@@ -22,11 +22,15 @@ void	put_color_to_pixel(t_data *fractal, int x, int y, int color)
 
 int	exit_fractal(t_data *fractal)
 {
-	mlx_destroy_image(fractal->mlx_ptr, fractal->image);
-	mlx_destroy_window(fractal->mlx_ptr, fractal->win_ptr);
+	if (fractal->image)
+		mlx_destroy_image(fractal->mlx_ptr, fractal->image);
+	if (fractal->win_ptr)
+		mlx_destroy_window(fractal->mlx_ptr, fractal->win_ptr);
+	if (fractal->mlx_ptr)
+		mlx_destroy_display(fractal->mlx_ptr);
 	free(fractal->mlx_ptr);
 	free(fractal);
-	exit(1);
+	exit(0);
 	return (0);
 }
 
@@ -35,12 +39,18 @@ void	change_iterations(t_data *fractal, int key_code)
 	if (key_code == M || key_code == MINUS)
 	{
 		if (fractal->max_iterations > 42)
+		{
 			fractal->max_iterations -= 42;
+			printf("fractal->max_iterations = %d\n", fractal->max_iterations);
+		}
 	}
 	else if (key_code == P || key_code == PLUS)
 	{
 		if (fractal->max_iterations < 4200)
+		{
 			fractal->max_iterations += 42;
+			printf("fractal->max_iterations = %d\n", fractal->max_iterations);
+		}
 	}
 }
 
@@ -67,4 +77,20 @@ void	zoom(t_data *fractal, int x, int y, int zoom)
 	}
 	else
 		return ;
+}
+
+void	set_julia_params(t_data *fractal, double cx, double cy)
+{
+	if (!cx && !cy)
+	{
+		fractal->cx = -0.745429;
+		fractal->cy = 0.05;
+	}
+	else
+	{
+		fractal->cx = cx;
+		fractal->cy = cy;
+	}
+	fractal->name = "julia";
+	draw_julia(fractal);
 }

@@ -17,6 +17,7 @@
 #include "libft/libft.h"
 #include "key.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <math.h>
 
 #define WIDTH 1280
@@ -40,23 +41,33 @@ typedef struct s_data {
 	double	offset_y;
 	double  zoom;
 	int     max_iterations;
+	int     *iterations;
+	double     last_modulus;
 	char	*name;
 	int     color;
 }              t_data;
 
-
-int	close_window(int keycode, t_data *data);
-int	draw_fractal(t_data *fractal, char *query, double cx, double cy);
-int	key_hook(int key_code, t_data *fractal);
-int	mouse_hook(int mouse_code, int x, int y, t_data *fractal);
-int	exit_fractal(t_data *fractal);
-void	calculate_mandelbrot(t_data *fractal);
-// void calculate_julia(t_data *fractal, double cx, double cy);
+int		draw_fractal(t_data *fractal, char *query, double cx, double cy);
+void	change_iterations(t_data *fractal, int key_code);
 void	zoom(t_data *fractal, int x, int y, int zoom);
+
+int		calculate_mandelbrot(t_data *fractal);
+void	*draw_mandelbrot(void *fractal_void);
+int		apply_gradient(int iter, t_data *fractal);
+
+int	calculate_julia(t_data *fractal);
+void	*draw_julia(void *fractal_void);
+void	set_julia_params(t_data *fractal, double cx, double cy);
+void	set_random_julia(double *cx, double *cy);
+
+int		close_window(int keycode, t_data *data);
+int		key_hook(int key_code, t_data *fractal);
+int		mouse_hook(int mouse_code, int x, int y, t_data *fractal);
+int		exit_fractal(t_data *fractal);
 void	init_fractal(t_data *fractal);
 void	init_mlx(t_data *fractal);
-int	parse_query(char **query);
 void	put_color_to_pixel(t_data *fractal, int x, int y, int color);
-void	change_iterations(t_data *fractal, int key_code);
+
+int		parse_query(char **query);
 
 #endif

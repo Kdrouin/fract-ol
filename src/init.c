@@ -18,15 +18,23 @@ void	init_fractal(t_data *fractal)
 	fractal->y = 0;
 	fractal->color = 0xFCBE11;
 	fractal->zoom = 300;
-	fractal->offset_x = -1.21;
-	fractal->offset_y = -1.21;
+	fractal->offset_x = -2.1;
+	fractal->offset_y = -1.20;
 	fractal->max_iterations = 42;
+	fractal->last_modulus = 1;
+	fractal->iterations = malloc(sizeof(int) * WIDTH * HEIGHT);
+	if (!fractal->iterations)
+	{
+		ft_putendl_fd("Error: malloc failed", 1);
+		exit(0);
+	}
 }
 
 void	init_mlx(t_data *fractal)
 {
 	fractal->mlx_ptr = mlx_init();
-	fractal->win_ptr = mlx_new_window(fractal->mlx_ptr, WIDTH, HEIGHT, "Fract-ol");
+	fractal->win_ptr = mlx_new_window(fractal->mlx_ptr,
+			WIDTH, HEIGHT, "Fract-ol");
 	fractal->image = mlx_new_image(fractal->mlx_ptr, WIDTH, HEIGHT);
 	fractal->pointer_to_image = mlx_get_data_addr(fractal->image,
 			&fractal->bits_per_pixel,

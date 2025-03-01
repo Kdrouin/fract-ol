@@ -15,7 +15,7 @@
 int	key_hook(int key_code, t_data *fractal)
 {
 	if (key_code == ESC)
-		exit(1);
+		exit_fractal(fractal);
 	else if (key_code == LEFT || key_code == Q)
 		fractal->offset_x -= 42 / fractal->zoom;
 	else if (key_code == RIGHT || key_code == D)
@@ -24,13 +24,14 @@ int	key_hook(int key_code, t_data *fractal)
 		fractal->offset_y -= 42 / fractal->zoom;
 	else if (key_code == DOWN || key_code == S)
 		fractal->offset_y += 42 / fractal->zoom;
-	else if (key_code == R)
+	else if (key_code == R || key_code == SPACE)
 		init_fractal(fractal);
 	else if (key_code == C)
 		fractal->color += (255 * 255 * 255) / 100;
-	// else if (key_code == J)
-		// set_random_julia(&fractal->cx, &fractal->cx);
-	else if (key_code == M || key_code == P || key_code == MINUS || key_code == PLUS)
+	else if (key_code == J)
+		set_random_julia(&fractal->cx, &fractal->cx);
+	else if (key_code == M || key_code == P
+		|| key_code == MINUS || key_code == PLUS)
 		change_iterations(fractal, key_code);
 	draw_fractal(fractal, fractal->name, fractal->cx, fractal->cy);
 	return (0);
@@ -42,6 +43,8 @@ int	mouse_hook(int mouse_code, int x, int y, t_data *fractal)
 		zoom(fractal, x, y, 1);
 	else if (mouse_code == SCROLL_DOWN)
 		zoom(fractal, x, y, -1);
+	if (mouse_code != SCROLL_UP && mouse_code != SCROLL_DOWN)
+		return (0);
 	draw_fractal(fractal, fractal->name, fractal->cx, fractal->cy);
 	return (0);
 }

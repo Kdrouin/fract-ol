@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atod.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadrouin <kadrouin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,26 +12,42 @@
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+static int	ft_isspace(int c)
 {
-	int		i;
-	int		neg;
-	int		nb;
+	return (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r');
+}
 
-	i = 0;
-	neg = 1;
-	nb = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
-		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+static int	ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+double	ft_atod(const char *str)
+{
+	double	result;
+	double	fraction;
+	int		sign;
+	int		i;
+	int		divisor;
+
+	sign = 1;
+	divisor = 1;
+	while (ft_isspace(str[i]))
 		i++;
-	while (str[i++] == '-')
-		neg = -1;
-	if (str[i] == '+')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	if (str[i] == '-' || str[i] == '+')
+		sign = 1 - 2 * (str[i++] == '-');
+	while (ft_isdigit(str[i]))
+		result = result * 10.0 + (str[i++] - '0');
+	if (str[i] == '.')
 	{
-		nb = nb * 10 + (str[i] - '0');
 		i++;
+		while (ft_isdigit(str[i]))
+		{
+			fraction = fraction * 10.0 + (str[i++] - '0');
+			divisor *= 10;
+		}
+		result += fraction / divisor;
 	}
-	return (nb * neg);
+	return (result * sign);
 }
