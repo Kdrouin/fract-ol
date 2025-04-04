@@ -32,6 +32,7 @@ double	ft_atod(const char *str)
 	int		divisor;
 
 	sign = 1;
+	i = 0;
 	divisor = 1;
 	while (ft_isspace(str[i]))
 		i++;
@@ -39,9 +40,8 @@ double	ft_atod(const char *str)
 		sign = 1 - 2 * (str[i++] == '-');
 	while (ft_isdigit(str[i]))
 		result = result * 10.0 + (str[i++] - '0');
-	if (str[i] == '.')
+	if (str[++i] == '.')
 	{
-		i++;
 		while (ft_isdigit(str[i]))
 		{
 			fraction = fraction * 10.0 + (str[i++] - '0');
