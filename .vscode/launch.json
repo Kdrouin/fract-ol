@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "//wsl.localhost/Debian/home/kadrouin/Project/fract-ol/src",
-      "program": "//wsl.localhost/Debian/home/kadrouin/Project/fract-ol/src/build/Debug/outDebug",
+      "cwd": "//wsl.localhost/Debian/home/kadrouin/Project/fract-ol/includes",
+      "program": "//wsl.localhost/Debian/home/kadrouin/Project/fract-ol/includes/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
