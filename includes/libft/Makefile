@@ -4,7 +4,7 @@ RESET = \033[0m
 
 NAME		=	libft.a
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra -fPIC
 OBJ 		=	ft_atod.o ft_strncmp.o ft_putendl_fd.o
 HEADERS	=	libft.h
 
