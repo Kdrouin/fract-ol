@@ -6,7 +6,7 @@
 /*   By: kadrouin <kadrouin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 22:01:51 by kadrouin          #+#    #+#             */
-/*   Updated: 2025/04/06 20:02:02 by kadrouin         ###   ########.fr       */
+/*   Updated: 2025/04/06 20:14:11 by kadrouin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	(void)argc;
 	if (parse_query(argv) == 0)
 	{
-		ft_putendl_fd("Usage: ./fractol 1 , 2 , Mandelbrot or Julia", 1);
+		ft_putendl_fd("Usage: ./fractol (1 , 2 , Mandelbrot or Julia)", 1);
 		return (0);
 	}
 	fractal = malloc(sizeof(t_data));
