@@ -35,7 +35,7 @@ $(MLX):
 	@echo "$(NAME): $(GREEN)$(MLX) was created$(RESET)"
 
 $(NAME): $(OBJ_FILES) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) -o $@ $^ -lbsd -lmlx -lXext -lX11 -lm 
+	@$(CC) $(CFLAGS) -o $@ $^ -Iinclude -ldl -lglfw -lm -lbsd -lXext -lX11 
 	@echo "$(NAME): $(GREEN)object files were created$(RESET)"
 	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
 

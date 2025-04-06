@@ -13,39 +13,40 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-#include "minilibx/mlx.h"
-#include "libft/libft.h"
-#include "key.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
+# include "minilibx/mlx.h"
+# include "libft/libft.h"
+# include "key.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <math.h>
 
-#define WIDTH 1280
-#define HEIGHT 720
+# define WIDTH 1280
+# define HEIGHT 720
 
-typedef struct s_data {
-	void    *mlx_ptr;
-	void    *win_ptr;
+typedef struct s_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
 	void	*pointer_to_image;
 	void	*image;
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
-	int	 x;
-	int	 y;
-	double  zx;
-	double  zy;
-	double  cx;
-	double  cy;
+	int		x;
+	int		y;
+	double	zx;
+	double	zy;
+	double	cx;
+	double	cy;
 	double	offset_x;
 	double	offset_y;
-	double  zoom;
-	int     max_iterations;
-	int     *iterations;
-	double     last_modulus;
+	double	zoom;
+	int		max_iterations;
+	int		*iterations;
+	double	last_modulus;
 	char	*name;
-	int     color;
-}              t_data;
+	int		color;
+}			t_data;
 
 int		draw_fractal(t_data *fractal, char *query, double cx, double cy);
 void	change_iterations(t_data *fractal, int key_code);
@@ -55,7 +56,7 @@ int		calculate_mandelbrot(t_data *fractal);
 void	*draw_mandelbrot(void *fractal_void);
 int		apply_gradient(int iter, t_data *fractal);
 
-int	calculate_julia(t_data *fractal);
+int		calculate_julia(t_data *fractal);
 void	*draw_julia(void *fractal_void);
 void	set_julia_params(t_data *fractal, double cx, double cy);
 void	set_random_julia(double *cx, double *cy);

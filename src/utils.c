@@ -39,18 +39,12 @@ void	change_iterations(t_data *fractal, int key_code)
 	if (key_code == M || key_code == MINUS)
 	{
 		if (fractal->max_iterations > 42)
-		{
 			fractal->max_iterations -= 42;
-			printf("fractal->max_iterations = %d\n", fractal->max_iterations);
-		}
 	}
 	else if (key_code == P || key_code == PLUS)
 	{
 		if (fractal->max_iterations < 4200)
-		{
 			fractal->max_iterations += 42;
-			printf("fractal->max_iterations = %d\n", fractal->max_iterations);
-		}
 	}
 }
 

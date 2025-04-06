@@ -53,10 +53,17 @@ int	parse_query(char **query, int argc)
 		&& (argc == 4))
 	{
 		if (!is_double(query[2]) || !is_double(query[3]))
+<<<<<<< HEAD
 			{
 				ft_putendl_fd("Error: Invalid parameters for Julia set", 1);
 				return (0);
 			}
+=======
+		{
+			ft_putendl_fd("Usage: ./fractol Julia <cx> <cy>", 1);
+			return (0);
+		}
+>>>>>>> 692955cdd8939875b6ca2fb0cd38495742a4f0a0
 		else
 			return (2);
 	}
