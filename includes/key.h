@@ -1,7 +1,7 @@
 #ifndef KEY_H
 # define KEY_H
 
-# define ESC 27
+# define ESC 65307
 # define SPACE 32
 # define UP 65362
 # define DOWN 65364

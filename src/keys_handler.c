@@ -26,8 +26,6 @@ int	key_hook(int key_code, t_data *fractal)
 		fractal->offset_y += 42 / fractal->zoom;
 	else if (key_code == R || key_code == SPACE)
 		init_fractal(fractal);
-	else if (key_code == C)
-		fractal->color += (255 * 255 * 255) / 100;
 	else if (key_code == J)
 		set_random_julia(&fractal->cx, &fractal->cx);
 	else if (key_code == M || key_code == P

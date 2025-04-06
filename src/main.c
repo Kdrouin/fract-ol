@@ -6,7 +6,7 @@
 /*   By: kadrouin <kadrouin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 22:01:51 by kadrouin          #+#    #+#             */
-/*   Updated: 2025/03/01 06:17:51 by kadrouin         ###   ########.fr       */
+/*   Updated: 2025/04/06 22:49:17 by kadrouin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,20 @@ int	main(int argc, char **argv)
 {
 	t_data	*fractal;
 
-	(void)argc;
-	if (parse_query(argv) == 0)
+	if (parse_query(argv, argc) == 0)
+		return (0);
+	fractal = malloc(sizeof(t_data));
+	if (!fractal)
 	{
-		ft_putendl_fd("Usage: ./fractol <fractal>", 1);
+		ft_putendl_fd("Error: malloc failed", 1);
 		return (0);
 	}
-	fractal = malloc(sizeof(t_data));
 	init_fractal(fractal);
 	init_mlx(fractal);
 	mlx_key_hook(fractal->win_ptr, key_hook, fractal);
 	mlx_mouse_hook(fractal->win_ptr, mouse_hook, fractal);
-	mlx_hook(fractal->win_ptr, 17, 0L, exit_fractal, fractal);
-	if (parse_query(argv) == 2)
+	mlx_hook(fractal->win_ptr, 17, 0L, (void *)exit_fractal, fractal);
+	if (parse_query(argv, argc) == 2)
 		draw_fractal(fractal, argv[1], atoi(argv[2]), atoi(argv[3]));
 	else
 		draw_fractal(fractal, argv[1], 0, 0);

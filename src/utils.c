@@ -20,7 +20,7 @@ void	put_color_to_pixel(t_data *fractal, int x, int y, int color)
 	buffer[(y * fractal->size_line / 4) + x] = color;
 }
 
-int	exit_fractal(t_data *fractal)
+void	exit_fractal(t_data *fractal)
 {
 	if (fractal->image)
 		mlx_destroy_image(fractal->mlx_ptr, fractal->image);
@@ -29,9 +29,9 @@ int	exit_fractal(t_data *fractal)
 	if (fractal->mlx_ptr)
 		mlx_destroy_display(fractal->mlx_ptr);
 	free(fractal->mlx_ptr);
+	free(fractal->iterations); 
 	free(fractal);
 	exit(0);
-	return (0);
 }
 
 void	change_iterations(t_data *fractal, int key_code)

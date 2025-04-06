@@ -63,11 +63,11 @@ void	set_random_julia(double *cx, double *cy);
 int		close_window(int keycode, t_data *data);
 int		key_hook(int key_code, t_data *fractal);
 int		mouse_hook(int mouse_code, int x, int y, t_data *fractal);
-int		exit_fractal(t_data *fractal);
+void	exit_fractal(t_data *fractal);
 void	init_fractal(t_data *fractal);
 void	init_mlx(t_data *fractal);
 void	put_color_to_pixel(t_data *fractal, int x, int y, int color);
 
-int		parse_query(char **query);
+int		parse_query(char **query, int argc);
 
 #endif

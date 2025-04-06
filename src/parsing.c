@@ -40,24 +40,26 @@ static int	is_double(const char *str)
 	return (has_digit);
 }
 
-int	parse_query(char **query)
+int	parse_query(char **query, int argc)
 {
 	if (!query[1])
 		return (0);
-	if ((ft_strncmp(query[1], "mandelbrot", 10) == 0)
-		|| (ft_strncmp(query[1], "1", 1) == 0))
+	if (((ft_strncmp(query[1], "mandelbrot", 10) == 0)
+		|| (ft_atod(query[1]) == 1.0))
+		&& (argc = 2))
 		return (1);
-	else if ((ft_strncmp(query[1], "julia", 5) == 0)
-		|| (ft_strncmp(query[1], "2", 1) == 0))
+	else if (((ft_strncmp(query[1], "julia", 5) == 0)
+		|| (ft_atod(query[1]) == 2.0))
+		&& (argc == 4))
 	{
 		if (!is_double(query[2]) || !is_double(query[3]))
-			return (0);
+			{
+				ft_putendl_fd("Error: Invalid parameters for Julia set", 1);
+				return (0);
+			}
 		else
 			return (2);
 	}
-	else if ((ft_strncmp(query[1], "burningship", 11) == 0)
-		|| (ft_strncmp(query[1], "3", 1) == 0))
-		return (3);
-	else
-		return (0);
+	ft_putendl_fd("Usage: ./fractol (Mandelbrot or 1) (Julia or 2)", 1);
+	return (0);
 }
