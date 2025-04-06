@@ -51,7 +51,10 @@ int	parse_query(char **query)
 		|| (ft_strncmp(query[1], "2", 1) == 0))
 	{
 		if (!is_double(query[2]) || !is_double(query[3]))
+		{
+			ft_putendl_fd("Usage: ./fractol Julia <cx> <cy>", 1);
 			return (0);
+		}
 		else
 			return (2);
 	}
