@@ -27,7 +27,7 @@ int	key_hook(int key_code, t_data *fractal)
 	else if (key_code == R || key_code == SPACE)
 		init_fractal(fractal);
 	else if (key_code == J || key_code == L || key_code == O
-			|| key_code == P || key_code == M)
+		|| key_code == P || key_code == M)
 		change_julia(&fractal->cx, &fractal->cy, key_code);
 	else if (key_code == MINUS || key_code == PLUS)
 		change_iterations(fractal, key_code);

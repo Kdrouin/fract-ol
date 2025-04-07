@@ -29,7 +29,7 @@ void	exit_fractal(t_data *fractal)
 	if (fractal->mlx_ptr)
 		mlx_destroy_display(fractal->mlx_ptr);
 	free(fractal->mlx_ptr);
-	free(fractal->iterations); 
+	free(fractal->iterations);
 	free(fractal);
 	exit(0);
 }
