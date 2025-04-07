@@ -41,3 +41,17 @@ void	set_random_julia(double *cx, double *cy)
 	*cx = (double)rand() / RAND_MAX * 4 - 2;
 	*cy = (double)rand() / RAND_MAX * 4 - 2;
 }
+
+void	change_julia(double *cx, double *cy, int key_code)
+{
+	if (key_code == J)
+		set_random_julia(cx, cy);
+	else if (key_code == L)
+		*cy += 0.1;
+	else if (key_code == O)
+		*cy -= 0.1;
+	else if (key_code == P)
+		*cx -= 0.1;
+	else if (key_code == M)
+		*cx += 0.1;
+}

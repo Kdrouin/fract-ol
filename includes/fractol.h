@@ -60,6 +60,7 @@ int		calculate_julia(t_data *fractal);
 void	*draw_julia(void *fractal_void);
 void	set_julia_params(t_data *fractal, double cx, double cy);
 void	set_random_julia(double *cx, double *cy);
+void	change_julia(double *cx, double *cy, int key_code);
 
 int		close_window(int keycode, t_data *data);
 int		key_hook(int key_code, t_data *fractal);

@@ -44,26 +44,19 @@ int	parse_query(char **query, int argc)
 {
 	if (!query[1])
 		return (0);
-	if (((ft_strncmp(query[1], "mandelbrot", 10) == 0)
-		|| (ft_atod(query[1]) == 1.0))
+	if (((ft_strncmp(query[1], "mandelbrot\0", 11) == 0)
+		|| (ft_atod(query[1]) == 1))
 		&& (argc = 2))
 		return (1);
-	else if (((ft_strncmp(query[1], "julia", 5) == 0)
-		|| (ft_atod(query[1]) == 2.0))
+	else if (((ft_strncmp(query[1], "julia\0", 6) == 0)
+		|| (ft_atod(query[1]) == 2))
 		&& (argc == 4))
 	{
 		if (!is_double(query[2]) || !is_double(query[3]))
-<<<<<<< HEAD
 			{
 				ft_putendl_fd("Error: Invalid parameters for Julia set", 1);
 				return (0);
 			}
-=======
-		{
-			ft_putendl_fd("Usage: ./fractol Julia <cx> <cy>", 1);
-			return (0);
-		}
->>>>>>> 692955cdd8939875b6ca2fb0cd38495742a4f0a0
 		else
 			return (2);
 	}

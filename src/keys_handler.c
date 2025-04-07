@@ -26,10 +26,10 @@ int	key_hook(int key_code, t_data *fractal)
 		fractal->offset_y += 42 / fractal->zoom;
 	else if (key_code == R || key_code == SPACE)
 		init_fractal(fractal);
-	else if (key_code == J)
-		set_random_julia(&fractal->cx, &fractal->cx);
-	else if (key_code == M || key_code == P
-		|| key_code == MINUS || key_code == PLUS)
+	else if (key_code == J || key_code == L || key_code == O
+			|| key_code == P || key_code == M)
+		change_julia(&fractal->cx, &fractal->cy, key_code);
+	else if (key_code == MINUS || key_code == PLUS)
 		change_iterations(fractal, key_code);
 	draw_fractal(fractal, fractal->name, fractal->cx, fractal->cy);
 	return (0);
