@@ -43,12 +43,16 @@ static int	is_double(const char *str)
 int	parse_query(char **query, int argc)
 {
 	if (!query[1])
+	{
+		ft_putendl_fd("Error: No parameters provided", 1);
 		return (0);
-	if (((ft_strncmp(query[1], "mandelbrot\0", 11) == 0)
-			|| (ft_atod(query[1]) == 1)) && (argc == 2))
+	}
+	if ((ft_strncmp(query[1], "mandelbrot\0", 11) == 0) && (argc == 2))
 		return (1);
+	else if ((ft_atod(query[1]) == 1) && (argc == 2))
+		return(1);
 	else if (((ft_strncmp(query[1], "julia\0", 6) == 0)
-			|| (ft_atod(query[1]) == 2)) && (argc == 4))
+				|| (ft_strncmp(query[1], "1", 2))) && (argc == 4))
 	{
 		if (!is_double(query[2]) || !is_double(query[3]))
 		{

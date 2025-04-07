@@ -23,6 +23,17 @@ static int	ft_isdigit(int c)
 	return (c >= '0' && c <= '9');
 }
 
+static int	ft_space_n_sign(const char *str, int *i, int *sign)
+{
+	while (ft_isspace(str[*i]))
+		(*i)++;
+	if (str[*i] == '-' || str[*i] == '+')
+	{
+		*sign = 1 - 2 * (str[(*i)++] == '-');
+	}
+	return (*i);
+}
+
 double	ft_atod(const char *str)
 {
 	double	result;
@@ -34,10 +45,10 @@ double	ft_atod(const char *str)
 	sign = 1;
 	i = 0;
 	divisor = 1;
-	while (ft_isspace(str[i]))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-		sign = 1 - 2 * (str[i++] == '-');
+	result = 0.0;
+	fraction = 0.0;
+
+	i = ft_space_n_sign(str, &i, &sign);
 	while (ft_isdigit(str[i]))
 		result = result * 10.0 + (str[i++] - '0');
 	if (str[++i] == '.')
