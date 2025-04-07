@@ -49,10 +49,15 @@ int	parse_query(char **query, int argc)
 	}
 	if ((ft_strncmp(query[1], "mandelbrot\0", 11) == 0) && (argc == 2))
 		return (1);
+<<<<<<< HEAD
 	else if ((ft_atod(query[1]) == 1) && (argc == 2))
 		return(1);
 	else if (((ft_strncmp(query[1], "julia\0", 6) == 0)
 				|| (ft_strncmp(query[1], "1", 2))) && (argc == 4))
+=======
+	else if (((ft_strncmp(query[1], "julia", 6) == 0)
+			|| (ft_atod(query[1]) == 2)) && (argc == 4))
+>>>>>>> 069257047a8932a166f7ef6b9da68bdd68bccd71
 	{
 		if (!is_double(query[2]) || !is_double(query[3]))
 		{
@@ -62,6 +67,6 @@ int	parse_query(char **query, int argc)
 		else
 			return (2);
 	}
-	ft_putendl_fd("Usage: ./fractol (Mandelbrot or 1) (Julia or 2)", 1);
+	ft_putendl_fd("Usage: ./fractol (mandelbrot or 1) (julia or 2)", 1);
 	return (0);
 }
