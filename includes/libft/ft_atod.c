@@ -47,7 +47,6 @@ double	ft_atod(const char *str)
 	divisor = 1;
 	result = 0.0;
 	fraction = 0.0;
-
 	i = ft_space_n_sign(str, &i, &sign);
 	while (ft_isdigit(str[i]))
 		result = result * 10.0 + (str[i++] - '0');

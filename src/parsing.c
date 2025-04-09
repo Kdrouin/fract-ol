@@ -49,15 +49,10 @@ int	parse_query(char **query, int argc)
 	}
 	if ((ft_strncmp(query[1], "mandelbrot\0", 11) == 0) && (argc == 2))
 		return (1);
-<<<<<<< HEAD
-	else if ((ft_atod(query[1]) == 1) && (argc == 2))
-		return(1);
+	else if ((ft_strncmp(query[1], "1\0", 2) == 0) && (argc == 2))
+		return (1);
 	else if (((ft_strncmp(query[1], "julia\0", 6) == 0)
-				|| (ft_strncmp(query[1], "1", 2))) && (argc == 4))
-=======
-	else if (((ft_strncmp(query[1], "julia", 6) == 0)
-			|| (ft_atod(query[1]) == 2)) && (argc == 4))
->>>>>>> 069257047a8932a166f7ef6b9da68bdd68bccd71
+			|| (ft_strncmp(query[1], "2", 2) == 0)) && (argc == 4))
 	{
 		if (!is_double(query[2]) || !is_double(query[3]))
 		{
