@@ -27,10 +27,12 @@ static int	ft_space_n_sign(const char *str, int *i, int *sign)
 {
 	while (ft_isspace(str[*i]))
 		(*i)++;
-	if (str[*i] == '-' || str[*i] == '+')
+	if (str[*i] == '-')
 	{
 		*sign = 1 - 2 * (str[(*i)++] == '-');
 	}
+	else if (str[*i] == '+')
+		
 	return (*i);
 }
 
