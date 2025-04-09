@@ -31,8 +31,6 @@ static int	ft_space_n_sign(const char *str, int *i, int *sign)
 	{
 		*sign = 1 - 2 * (str[(*i)++] == '-');
 	}
-	else if (str[*i] == '+')
-		
 	return (*i);
 }
 
