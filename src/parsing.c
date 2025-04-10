@@ -21,7 +21,7 @@ static int	is_double(const char *str)
 	has_digit = 0;
 	if (!str || !*str)
 		return (0);
-	if (*str == '-')
+	if (*str == '-' || *str == '+')
 		str++;
 	while (*str)
 	{
@@ -47,7 +47,8 @@ static int	parse_julia(char **query)
 		ft_putendl_fd("Error: Invalid parameters for Julia set", 1);
 		return (0);
 	}
-	if (!((ft_atod(query[2]) < 2 && ft_atod(query[2]) > -2) && (ft_atod(query[3]) < 2 && ft_atod(query[3]) > -2)))
+	if ((ft_atod(query[2]) > 2 && ft_atod(query[2]) < -2)
+		&& (ft_atod(query[3]) > 2 && ft_atod(query[3]) < -2))
 	{
 		ft_putendl_fd("Error: Julia parameters must be between -2 and 2", 1);
 		return (0);
